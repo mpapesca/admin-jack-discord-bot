@@ -22,7 +22,11 @@ client.on('ready', () => {
 
 client.on('message', msg => {
     if (msg.content === 'ping') {
-        msg.reply('Fuck of Jack!');
+        if (msg.author.id === '376469229056163841') {
+            msg.reply('Fuck of Jack!');
+        } else {
+            msg.reply('Pong!');
+        }
     }
 });
 
