@@ -23,7 +23,7 @@ client.on('ready', () => {
 client.on('message', msg => {
     if (msg.content === 'ping') {
         if (msg.author.username === 'Jack') {
-            msg.reply('Fuck of Jack!');
+            msg.reply('Fuck off Jack!');
         } else {
             msg.reply('Pong!');
         }
