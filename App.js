@@ -21,7 +21,6 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    console.log({ msg });
     if (msg.content === 'ping') {
         msg.reply('Fuck of Jack!');
     }
