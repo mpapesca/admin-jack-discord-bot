@@ -24,7 +24,7 @@ class DictionaryApi {
 
         var response = await client.get(`thesaurus/json/${word}?key=${process.env.THESAURUS_API_KEY}`);
 
-        return response.data[0]['shortdef'];
+        return response.data;
 
     }
 
