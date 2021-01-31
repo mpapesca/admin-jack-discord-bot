@@ -23,33 +23,37 @@ client.on('ready', () => {
 });
 
 client.on('message', async msg => {
+    try {
 
-    // Commands should be preceded with !jack.
-    if (msg.content.match(adminJackCommand)) {
+        // Commands should be preceded with !jack.
+        if (msg.content.match(adminJackCommand)) {
 
-        var args = msg.content.split(' ');
+            var args = msg.content.split(' ');
 
-        if (args.length <= 1) {
-            return msg.reply('What do you want!?');
+            if (args.length <= 1) {
+                return msg.reply('What do you want!?');
+            }
+
+            let [bot, actionName, ...actionArgs] = args;
+
+            var command = commands.find(c => {
+                return c.action.name == actionName;
+            });
+
+            let response;
+
+            if (command) {
+                // NOTE: This requires all actions to be async.
+                response = await command.action(...actionArgs);
+            } else {
+                response = 'Yea.. IDK what that is.';
+            }
+
+            msg.reply(response);
+
         }
-
-        let [bot, actionName, ...actionArgs] = args;
-
-        var command = commands.find(c => {
-            return c.action.name == actionName;
-        });
-
-        let response;
-
-        if (command) {
-            // NOTE: This requires all actions to be async.
-            response = await command.action(...actionArgs);
-        } else {
-            response = 'Yea.. IDK what that is.';
-        }
-
-        msg.reply(response);
-
+    } catch (e) {
+        msg.reply('Sorry, something went wrong, can you try again?');
     }
 });
 
