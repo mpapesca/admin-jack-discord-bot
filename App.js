@@ -67,7 +67,7 @@ const help = async () => {
 
     const formattedCommands = commands.map(c => {
 
-        let actionArgs = getFunctionArgs(c.action);
+        let actionArgs = getFunctionArgs(c.action).filter(a => a != '');
         let actionArgsString = actionArgs.length <= 0 ? '' : ` ${actionArgs.map(a => `<${a}>`).join(' ')}`;
 
         return `>   **${c.action.name}**: \`!jack ${c.action.name}${actionArgsString}\`\n>   ${c.description}`;
